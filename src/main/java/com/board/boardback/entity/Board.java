@@ -4,18 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
-public class Member {
+public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // DB가 알아서 생성해주는 것으로
-    private long member_serial;
+    private long board_id;
+    private String title;
+    private String content;
+    private Date write_date;
+    private int view_count;
+    private int comment_count;
     private String member_id;
-    private String password;
-    private String name;
-    private String tel_number;
-    private String address;
-    private String join_date;
-    private String acc_lvl;
-
 }

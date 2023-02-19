@@ -1,4 +1,4 @@
 package com.board.boardback.model;
 
-public class MemberModel {
+public class MemberDto {
 }
