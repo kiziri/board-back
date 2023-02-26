@@ -1,0 +1,33 @@
+# Server
+server:
+  address: localhost
+  port: 8080
+
+
+# Local
+spring:
+  url: http://localhost:8080
+
+  devtools:
+    livereload:
+      enabled: true
+      port: 35729
+    restart:
+      enabled: false
+
+  datasource:
+    url:
+    driver-class-name:
+    username:
+    password:
+
+  # JPA
+  jpa:
+    database-platform:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+  messages:
+    encoding: UTF-8
