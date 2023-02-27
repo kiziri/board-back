@@ -19,7 +19,7 @@ public class Member {
     private long member_serial;
 
     @Column(name = "member_id") // 회원 로그인 아이디
-    private String member_id;
+    private String memberId;
 
     @Column(name = "member_pw")
     private String password;

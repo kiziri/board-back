@@ -25,11 +25,11 @@ public class MemberRepository {
     }
 
 
-    public Member findByLoginInfo(String memberId, String memberPw) {
-        return em.createQuery("select m from Member m where m.memberId = :memberId " +
-                        "and m.memberPw = :memberPw", Member.class)
-                .setParameter("memberId", memberId)
-                .setParameter("memberPw", memberPw)
+    public Member findByLoginInfo(String memberId, String password) {
+        return em.createQuery("select m from Member m where m.memberId = :member_id " +
+                        "and m.password = :member_pw", Member.class)
+                .setParameter("member_id", memberId)
+                .setParameter("member_pw", password)
                 .getSingleResult();
     }
 
