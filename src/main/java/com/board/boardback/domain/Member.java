@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,7 +35,7 @@ public class Member {
     private String address;
 
     @Column(name = "join_date")
-    private String join_date;
+    private Date join_date;
 
     @Column(name = "acc_lvl")
     private String acc_lvl;
