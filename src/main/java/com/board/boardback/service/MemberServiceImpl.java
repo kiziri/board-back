@@ -58,6 +58,21 @@ public class MemberServiceImpl implements MemberService {
     }
 
     /**
+     * 로그인 요청 조회
+     * @param memberDto
+     * @return 로그인한 회원정보
+     */
+    @Override
+    public boolean findByMemberIdAndMemberPw(MemberDto memberDto) {
+        Member findMember = memberRepository.findById(memberDto.dtoToMemberEntity());
+
+        if (findMember != null && findMember.getMatchPassword(memberDto.getMemberPw())) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      *
      * @param memberDto
      * @return 정상시 True

@@ -29,6 +29,13 @@ public interface MemberService {
     /**
      * 
      * @param memberDto
+     * @return 로그인한 정보 매칭 확인 및 회원 정보
+     */
+    boolean findByMemberIdAndMemberPw(MemberDto memberDto);
+    
+    /**
+     * 
+     * @param memberDto
      * @return 회원 아이디 중복 계정 목록
      */
     boolean getDuplicateId(MemberDto memberDto);
