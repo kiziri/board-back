@@ -15,15 +15,15 @@ spring:
       enabled: false
 
   datasource:
-    url: jdbc:mysql://localhost:3306/<DB>?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: kiziri
+    url: jdbc:h2:tcp://localhost/~/board
+    driver-class-name: org.h2.Driver
+    username: sa
     password:
 
   # JPA
   jpa:
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: h2
+    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
       ddl-auto: update
@@ -41,11 +41,15 @@ spring:
   messages:
     encoding: UTF-8
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
 # File Upload location
-file:
-  upload:
-    directory: imageUpload/
-    directorylocal: F:/github local/Comprehensive_Project/imageUpload/
+#file:
+#  upload:
+#    directory: imageUpload/
+#    directorylocal:
 
 # Logger
 logging.level:

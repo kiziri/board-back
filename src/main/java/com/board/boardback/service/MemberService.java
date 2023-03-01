@@ -6,65 +6,51 @@ import java.util.List;
 
 public interface MemberService {
     /**
-     * 
+     * 회원 정보 저장
      * @param memberDto
-     * @return 회원 정보 저장
+     * @return 회원 아이디
+     * 
      */
-    public MemberDto saveMember(MemberDto memberDto);
+    String saveMember(MemberDto memberDto);
 
     /**
-     * 
-     * @param memberDto
+     * 전체 회원 정보 조회
      * @return 모든 회원 정보 목록
      */
-    public List<MemberDto> findAll(MemberDto memberDto);
-
-    /**
-     * 
-     * @param memberDto
-     * @return 특정 회원 정보
-     */
-    public MemberDto findOne(MemberDto memberDto);
+    List<MemberDto> findAll();
 
     /**
      * 
      * @param memberDto
      * @return 아이디 기준으로 해당 회원 정보
      */
-    public MemberDto findById(MemberDto memberDto);
-
-    /**
-     * 
-     * @param memberDto
-     * @return 로그인한 회원 정보
-     */
-    public MemberDto getLoginMember(MemberDto memberDto);
+    MemberDto findById(MemberDto memberDto);
 
     /**
      * 
      * @param memberDto
      * @return 회원 아이디 중복 계정 목록
      */
-    public List<MemberDto> getCheckDuplicateId(MemberDto memberDto);
+    boolean getDuplicateId(MemberDto memberDto);
 
     /**
      * 
      * @param memberDto
-     * @return 회원의 접근 수준 정보 
+     * @return 회원 정보 조회 후 회원 접근 수준 정보
      */
-    public MemberDto getAccLvl(MemberDto memberDto);
+    String getMemberAccLvl(MemberDto memberDto);
 
     /**
      * 
      * @param memberDto
      * @return 수정된 회원 정보
      */
-    public MemberDto updateMember(MemberDto memberDto);
+    MemberDto updateMember(MemberDto memberDto);
 
     /**
      * 
      * @param memberDto
      * @ 회원 정보 삭제
      */
-    public void deleteMember(MemberDto memberDto);
+    void deleteMember(MemberDto memberDto);
 }

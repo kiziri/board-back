@@ -1,7 +1,6 @@
 package com.board.boardback.repository;
 
 import com.board.boardback.domain.Member;
-import com.board.boardback.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -12,37 +11,45 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberRepository {
     private final EntityManager em;
-    
+
     // todo: Dto <--> Entity 변환 로직 필요
+    public void save(Member member) {       // 회원가입
+        em.persist(member);
+    }
 
     public List<Member> findAll() {
         return em.createQuery("select m from Member m", Member.class).getResultList();
     }
 
-    public Member findById(String memberId) {
-        return em.find(Member.class, memberId);
+    public Member findById(Member member) {
+        return em.find(Member.class, member.getMemberId());
     }
 
-    public void save(Member member) {       // 회원가입
-        em.persist(member);
-    }
-
-
-    public Member findByLoginInfo(String memberId, String password) {
-        return em.createQuery("select m from Member m where m.memberId = :member_id " +
-                        "and m.password = :member_pw", Member.class)
-                .setParameter("member_id", memberId)
-                .setParameter("member_pw", password)
+    public Member findByMemberIdAndMemberPw(Member member) {
+        return em.createQuery("select m from Member m where m.memberId = :memberId " +
+                        "and m.memberPw = :memberPw", Member.class)
+                .setParameter("memberId", member.getMemberId())
+                .setParameter("memberPw", member.getMemberPw())
                 .getSingleResult();
     }
 
-    public List<Member> getValidateDuplicateId(MemberDto memberDto) {
-        return em.createQuery("select m from Member m where m.memberId = :member_id", Member.class)
-                .setParameter("member_id", memberDto.getMemberId()).getResultList();
+    public List<Member> getDuplicateId(Member member) {
+        return em.createQuery("select m from Member m where m.memberId = :memberId", Member.class)
+                .setParameter("memberId", member.getMemberId()).getResultList();
     }
 
-    public Member getMemberAccLvl(MemberDto memberDto) {
-        return em.createQuery("select m.acc_lvl from Member m where m.memberId = :member_id", Member.class)
-                .setParameter("member_id", memberDto.getMemberId()).getSingleResult();
+    public Member getMemberAccLvl(Member member) {
+        return em.createQuery("select m.accLvl from Member m where m.memberId = :memberId", Member.class)
+                .setParameter("memberId", member.getMemberId()).getSingleResult();
+    }
+
+    public Member updateMember(Member member) {
+        em.persist(member);
+
+        return em.find(Member.class, member.getMemberId());
+    }
+
+    public void deleteMember(Member member) {
+        em.remove(member);
     }
 }

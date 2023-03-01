@@ -7,7 +7,6 @@ import javax.persistence.*;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,17 +14,17 @@ import static javax.persistence.FetchType.LAZY;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // DB가 알아서 생성해주는 것으로
-    @Column(name = "comment_id")
+    @Column(name = "commentId")
     private long commentId;
-    @Column(name = "comment_content")
+    @Column(name = "content")
     private String content;
-    @Column(name = "comment_date")
+    @Column(name = "commentDate")
     private String commentDate;
     @Column(name = "isCoComent")
     private String isCoComment;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "memberId")
     private Member member;
 
     @ManyToOne(fetch = LAZY)

@@ -9,7 +9,6 @@ import java.util.List;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,21 +16,21 @@ import static javax.persistence.FetchType.LAZY;
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // DB가 알아서 생성해주는 것으로
-    @Column(name = "board_id")
+    @Column(name = "boardId")
     private long boardId;
     @Column(name = "title")
     private String title;
     @Column(name = "content")
     private String content;
-    @Column(name = "write_date")
-    private Date wrie_date;
-    @Column(name = "view_count")
-    private int view_count;
-    @Column(name = "comment_count")
-    private int comment_count;
+    @Column(name = "wrieDate")
+    private Date wrieDate;
+    @Column(name = "viewCount")
+    private int viewCount;
+    @Column(name = "commentCount")
+    private int commentCount;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "memberId")
     private Member member;
 
     @OneToMany

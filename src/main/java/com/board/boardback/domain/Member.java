@@ -1,5 +1,6 @@
 package com.board.boardback.domain;
 
+import com.board.boardback.dto.MemberDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,37 +9,32 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Builder
 @Getter
-@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
     @Id
-    @Column(name = "member_serial")
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // DB가 알아서 생성해주는 것으로
-    private long member_serial;
-
-    @Column(name = "member_id") // 회원 로그인 아이디
+    @Column(name = "memberId") // 회원 로그인 아이디
     private String memberId;
 
-    @Column(name = "member_pw")
-    private String password;
+    @Column(name = "memberPw")
+    private String memberPw;
 
-    @Column(name = "member_name")
-    private String name;
+    @Column(name = "memberName")
+    private String memberName;
 
-    @Column(name = "member_telnumber")
-    private String telNumber;
+    @Column(name = "memberTelNum")
+    private String memberTelNum;
 
-    @Column(name = "member_address")
-    private String address;
+    @Column(name = "memberAddress")
+    private String memberAddress;
 
-    @Column(name = "join_date")
-    private Date join_date;
+    @Column(name = "joinDate")
+    private Date joinDate;
 
-    @Column(name = "acc_lvl")
-    private String acc_lvl;
+    @Column(name = "accLvl")
+    private String accLvl;
 
     @OneToMany(mappedBy = "member")
     private List<Board> boards = new ArrayList<>();
@@ -46,11 +42,22 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
-    private List<File> files = new ArrayList<>();
 
+    public boolean getMatchPassword(String memberPw) {
+        return this.memberPw.equals(memberPw);
+    }
 
-    public boolean getMatchPassword(String password) {
-        return this.password.equals(password);
+    public MemberDto entityToMemberDto() {
+        return MemberDto.builder()
+                .memberId(memberId)
+                .memberPw(memberPw)
+                .memberName(memberName)
+                .memberTelNum(memberTelNum)
+                .memberAddress(memberAddress)
+                .joinDate(joinDate)
+                .accLvl(accLvl)
+                .boards(boards)
+                .comments(comments)
+                .build();
     }
 }
