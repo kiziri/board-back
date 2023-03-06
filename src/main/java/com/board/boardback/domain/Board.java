@@ -1,5 +1,6 @@
 package com.board.boardback.domain;
 
+import com.board.boardback.dto.BoardDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -42,5 +43,16 @@ public class Board {
         member.getBoards().add(this);
     }
 
-
+    public BoardDto entityToBoardDto() {
+        return BoardDto.builder()
+                .boardId(boardId)
+                .title(title)
+                .content(content)
+                .wrieDate(wrieDate)
+                .viewCount(viewCount)
+                .commentCount(commentCount)
+                .member(member)
+                .comments(comments)
+                .build();
+    }
 }
