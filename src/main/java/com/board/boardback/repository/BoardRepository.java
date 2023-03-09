@@ -24,4 +24,23 @@ public class BoardRepository {
     public List<Board> findAll() {
         return em.createQuery("select b from Board b", Board.class).getResultList();
     }
+
+    public Board getBoardViewCount(Board board) {
+        return em.createQuery("select b.viewCount from Board b where b.boardId = :boardId", Board.class)
+                .setParameter("boardId", board.getBoardId()).getSingleResult();
+    }
+
+    public Board getBoardCommentCount(Board board) {
+        return em.createQuery("select b.commentCount from Board b where b.boardId = :boardId", Board.class)
+                .setParameter("boardId", board.getBoardId()).getSingleResult();
+    }
+
+    public Board updateBoard(Board board) {
+        em.persist(board);
+        return em.find(Board.class, board.getBoardId());
+    }
+
+    public void deleteBoard(Board board) {
+        em.remove(board);
+    }
 }
