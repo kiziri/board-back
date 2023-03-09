@@ -25,14 +25,14 @@ public class BoardRepository {
         return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
-    public Board getBoardViewCount(Board board) {
+    public int getBoardViewCount(Long boardId) {
         return em.createQuery("select b.viewCount from Board b where b.boardId = :boardId", Board.class)
-                .setParameter("boardId", board.getBoardId()).getSingleResult();
+                .setParameter("boardId", boardId).getSingleResult().getViewCount();
     }
 
-    public Board getBoardCommentCount(Board board) {
+    public int getBoardCommentCount(Long boardId) {
         return em.createQuery("select b.commentCount from Board b where b.boardId = :boardId", Board.class)
-                .setParameter("boardId", board.getBoardId()).getSingleResult();
+                .setParameter("boardId", boardId).getSingleResult().getCommentCount();
     }
 
     public Board updateBoard(Board board) {
