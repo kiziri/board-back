@@ -25,14 +25,9 @@ public class BoardRepository {
         return em.createQuery("select b from Board b", Board.class).getResultList();
     }
 
-    public int getBoardViewCount(Long boardId) {
-        return em.createQuery("select b.viewCount from Board b where b.boardId = :boardId", Board.class)
-                .setParameter("boardId", boardId).getSingleResult().getViewCount();
-    }
-
-    public int getBoardCommentCount(Long boardId) {
-        return em.createQuery("select b.commentCount from Board b where b.boardId = :boardId", Board.class)
-                .setParameter("boardId", boardId).getSingleResult().getCommentCount();
+    public List<Board> findAllByMemberId(Board board) {
+        return em.createQuery("select b from Board b where b.member.memberId = :memberId", Board.class)
+                .setParameter("memberId", board.getMember().getMemberId()).getResultList();
     }
 
     public Board updateBoard(Board board) {

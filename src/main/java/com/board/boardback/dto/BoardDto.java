@@ -61,6 +61,26 @@ public class BoardDto {
         this.comments = comments;
     }
 
+    public BoardDto(long boardId) {
+        this.boardId = boardId;
+    }
+
+    public BoardDto(long boardId, int viewCount) {
+        this.boardId = boardId;
+        this.viewCount = viewCount;
+    }
+
+    public BoardDto(Board board) {
+        this.boardId = board.getBoardId();
+        this.title = board.getTitle();
+        this.content = board.getContent();
+        this.wrieDate = board.getWrieDate();
+        this.viewCount = board.getViewCount();
+        this.commentCount = board.getViewCount();
+        this.member = board.getMember();
+        this.comments = board.getComments();
+    }
+
     public Board dtoToBoardEntity() {
         return Board.builder()
                 .boardId(boardId)

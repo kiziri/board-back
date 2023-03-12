@@ -12,7 +12,6 @@ import java.util.List;
 public class MemberRepository {
     private final EntityManager em;
 
-    // todo: Dto <--> Entity 변환 로직 필요
     public void save(Member member) {       // 회원가입
         em.persist(member);
     }
